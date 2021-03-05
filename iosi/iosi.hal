@@ -1,0 +1,156 @@
+loadrt [KINS]KINEMATICS
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+loadrt hostmot2
+loadrt hm2_rpspi spiclk_rate=41667 spiclk_rate_rd=25000
+
+addf hm2_[HOSTMOT2](BOARD).0.read		servo-thread
+addf motion-command-handler			servo-thread
+addf motion-controller				servo-thread
+addf hm2_[HOSTMOT2](BOARD).0.write		servo-thread
+
+
+# ################
+# X [0] Axis
+# ################
+
+# timing parameters
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.dirsetup	[JOINT_0]DIRSETUP
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.dirhold		[JOINT_0]DIRHOLD
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.steplen		[JOINT_0]STEPLEN
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.stepspace	[JOINT_0]STEPSPACE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.position-scale	[JOINT_0]SCALE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.maxvel		[JOINT_0]STEPGEN_MAXVEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.maxaccel	[JOINT_0]STEPGEN_MAXACCEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.step_type	0
+
+newsig emcmot.00.enable bit
+sets emcmot.00.enable FALSE
+ 
+net emcmot.00.enable <= joint.0.amp-enable-out
+net emcmot.00.enable => hm2_[HOSTMOT2](BOARD).0.stepgen.00.enable
+
+# position command and feedback
+net emcmot.00.pos-cmd <= joint.0.motor-pos-cmd
+net emcmot.00.pos-cmd => hm2_[HOSTMOT2](BOARD).0.stepgen.00.position-cmd
+
+net motor.00.pos-fb <= hm2_[HOSTMOT2](BOARD).0.stepgen.00.position-fb
+net motor.00.pos-fb => joint.0.motor-pos-fb
+
+
+
+# ################
+# Y [1] Axis
+# ################
+
+# timing parameters
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.dirsetup	[JOINT_1]DIRSETUP
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.dirhold		[JOINT_1]DIRHOLD
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.steplen		[JOINT_1]STEPLEN
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.stepspace	[JOINT_1]STEPSPACE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.position-scale	[JOINT_1]SCALE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.maxvel		[JOINT_1]STEPGEN_MAXVEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.maxaccel	[JOINT_1]STEPGEN_MAXACCEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.01.step_type	0
+
+# axis enable chain
+newsig emcmot.01.enable bit
+sets emcmot.01.enable FALSE
+ 
+net emcmot.01.enable <= joint.1.amp-enable-out
+net emcmot.01.enable => hm2_[HOSTMOT2](BOARD).0.stepgen.01.enable
+
+# position command and feedback
+net emcmot.01.pos-cmd <= joint.1.motor-pos-cmd
+net emcmot.01.pos-cmd => hm2_[HOSTMOT2](BOARD).0.stepgen.01.position-cmd
+
+net motor.01.pos-fb <= hm2_[HOSTMOT2](BOARD).0.stepgen.01.position-fb
+net motor.01.pos-fb => joint.1.motor-pos-fb
+
+
+# ################
+# Z [2] Axis
+# ################
+# timing parameters
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.dirsetup	[JOINT_2]DIRSETUP
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.dirhold		[JOINT_2]DIRHOLD
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.steplen		[JOINT_2]STEPLEN
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.stepspace	[JOINT_2]STEPSPACE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.position-scale	[JOINT_2]SCALE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.maxvel		[JOINT_2]STEPGEN_MAXVEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.maxaccel	[JOINT_2]STEPGEN_MAXACCEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.02.step_type	0
+
+# axis enable chain
+newsig emcmot.02.enable bit
+sets emcmot.02.enable FALSE
+ 
+net emcmot.02.enable <= joint.2.amp-enable-out
+net emcmot.02.enable => hm2_[HOSTMOT2](BOARD).0.stepgen.02.enable
+
+# position command and feedback
+net emcmot.02.pos-cmd <= joint.2.motor-pos-cmd
+net emcmot.02.pos-cmd => hm2_[HOSTMOT2](BOARD).0.stepgen.02.position-cmd
+
+net motor.02.pos-fb <= hm2_[HOSTMOT2](BOARD).0.stepgen.02.position-fb
+net motor.02.pos-fb => joint.2.motor-pos-fb
+
+
+# ################
+# Z [2] Axis
+# ################
+# timing parameters
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.dirsetup	[JOINT_3]DIRSETUP
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.dirhold		[JOINT_3]DIRHOLD
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.steplen		[JOINT_3]STEPLEN
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.stepspace	[JOINT_3]STEPSPACE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.position-scale	[JOINT_3]SCALE
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.maxvel		[JOINT_3]STEPGEN_MAXVEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.maxaccel	[JOINT_3]STEPGEN_MAXACCEL
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.03.step_type	0
+
+# axis enable chain
+newsig emcmot.03.enable bit
+sets emcmot.03.enable FALSE
+ 
+net emcmot.03.enable <= joint.3.amp-enable-out
+net emcmot.03.enable => hm2_[HOSTMOT2](BOARD).0.stepgen.03.enable
+
+# position command and feedback
+net emcmot.03.pos-cmd <= joint.3.motor-pos-cmd
+net emcmot.03.pos-cmd => hm2_[HOSTMOT2](BOARD).0.stepgen.03.position-cmd
+
+net motor.03.pos-fb <= hm2_[HOSTMOT2](BOARD).0.stepgen.03.position-fb
+net motor.03.pos-fb => joint.3.motor-pos-fb
+
+
+# Limits Home x
+
+net X-home hm2_[HOSTMOT2](BOARD).0.gpio.000.in_not => joint.0.home-sw-in joint.0.neg-lim-sw-in joint.1.home-sw-in joint.1.neg-lim-sw-in
+net Y-home hm2_[HOSTMOT2](BOARD).0.gpio.005.in_not => joint.2.home-sw-in joint.2.neg-lim-sw-in
+net Z-home hm2_[HOSTMOT2](BOARD).0.gpio.003.in_not => joint.3.home-sw-in joint.3.pos-lim-sw-in
+
+
+
+
+
+# ##################################################
+# Standard I/O Block - EStop, Etc
+# ##################################################
+
+
+# Estop
+loadrt estop_latch
+addf estop-latch.0 servo-thread
+net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
+net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
+net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
+loadrt message names=xestop messages="External E-Stop"
+net remote-estop estop-latch.0.fault-in <= hm2_[HOSTMOT2](BOARD).0.gpio.001.in xestop.trigger
+
+# create a signal for the estop loopback
+#net estop-loop iocontrol.0.user-enable-out => iocontrol.0.emc-enable-in
+
+# create signals for tool loading loopback
+net tool-prep-loop iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+net tool-change-loop iocontrol.0.tool-change => iocontrol.0.tool-changed
+
