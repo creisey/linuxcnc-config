@@ -19,3 +19,4 @@ LinuxCNC i installed a precompiled version form here
 https://gitlab.com/orangecnc/installer/-/tree/master/linuxcnc
 the armhf 2.8 (32 Bit OS)
 
+Max feedrate 12000MM/Min
