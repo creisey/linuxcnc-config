@@ -14,11 +14,13 @@ AFB0512LB 5015 50x50x15mm with the VHM-802 and a DC-DC Converter Modul Buck Step
 
 Raspberry PI 3 SPI MESA 7i90HD
 for the OS i use the Realtimepi distro https://github.com/guysoft/RealtimePi
+** 
 Mods   /etc/rc.local
-add 
+add **
+```
 echo -n 1200000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 echo -n performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-
+```
 LinuxCNC i installed a precompiled version form here
 https://gitlab.com/orangecnc/installer/-/tree/master/linuxcnc
 the armhf 2.8 (32 Bit OS)
