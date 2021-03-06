@@ -1,5 +1,8 @@
 This is my linuxcnc config
 
+both configs are working 
+the test-pnc is more reliable > i dont have a closed loop configuration, but the config has a PID
+
 my setup is a XXYZ Router
 1000x600x120mm
 
