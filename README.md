@@ -8,6 +8,7 @@ my setup is a XXYZ Router
 
 i use a 2.2kw Chinaspindle with a the ER20 Collet (fits Milling bits up to 14mm)
 watercooled > quiet setup
+i use car coolant with distilled water 1:5 (the water does not become moldy and does not begin to stink)
 Driver is a Huanyang > made a Mod to the Fan
 AFB0512LB 5015 50x50x15mm with the VHM-802 and a DC-DC Converter Modul Buck Step-Down 24v to 12v
 
